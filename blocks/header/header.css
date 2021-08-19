@@ -1,0 +1,19 @@
+.header {
+  min-height: 74px;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inter', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    min-height: 56px;
+  }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Александр Карякин">
+  <meta name="description" content="Страница о людях и красивых местах нашей страны.">
+  <meta name="keywords" content="Россия, путешествия, страна, Эльбрус, Домбай, Кавказ">
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/ico">
+</head>
+<body class="page-area">
+  <div class="page page-area__alignment">
+    <!-- секция Popup -->
+    <section class="popup">
+      <form class="form-edit">
+        <button class="button-close" type="button"></button>
+        <h2 class="form-edit__title">Редактировать профиль</h2>
+        <input class="form-edit__name" name="name" type="text">
+        <input class="form-edit__description" name="description" type="text">
+        <button class="button-submit" type="submit">Сохранить</button>
+      </form>
+    </section>
+    <!-- секция Header -->
+    <header class="header page__header">
+      <img class="header__logo" src="./images/logo.svg" alt="логотип сайта Место">
+    </header>
+    <!-- секция Content -->
+    <main class="content page__content">
+      <!-- секция Profile -->
+      <section class="profile content__profile">
+        <div class="profile-card">
+          <img class="avatar" src="./images/avatar.jpg" alt="аватар пользователя">
+          <div class="profile-card__info">
+            <div class="profile-card__title-cover">
+              <button class="button-edit" type="button"></button>
+              <h1 class="profile-card__title">Жак-Ив Кусто</h1>
+            </div>
+            <p class="profile-card__text">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="button-add profile__alignment-btn" type="button"></button>
+      </section>
+      <!-- секция Places -->
+      <section class="content__places" aria-label="Куда поехать?">
+        <ul class="places undecorated-list page__reset-alignment">
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-karachaevsk.jpg"
+              alt="Сентинский храм в Карачаево-Черкессии">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Карачаево-Черкессия</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-elbrus.jpg"
+              alt="вид на Эльбрус">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Гора Эльбрус</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-dombay.jpg"
+              alt="вид на Домбай">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Домбай</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-bermamyt.jpg"
+              alt="вид с плато Бермамыт">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Плато Бермамыт</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-gamsutl.jpg"
+              alt="вид на село Гамсутль">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Гамсутль</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="place page__reset-alignment">
+              <img class="place__image" src="./images/place-dargavs.jpg"
+              alt="Город мёртвых в Даргавсе">
+              <figcaption class="place__caption">
+                <h2 class="place__title">Даргавс</h2>
+                <button class="button-like" type="button"></button>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!-- секция Footer -->
+    <footer class="footer page__footer">
+      <p class="footer__copyright" lang="en">&copy; 2021 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./scripts/script.js"></script>
+</body>
+</html>

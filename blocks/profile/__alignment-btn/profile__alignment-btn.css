@@ -1,0 +1,15 @@
+.profile__alignment-btn {
+  margin: 35px 0;
+}
+
+@media screen and (max-width: 880px) {
+  .profile__alignment-btn {
+    margin: 35px 0 0;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .profile__alignment-btn {
+    margin: 0;
+  }
+}
