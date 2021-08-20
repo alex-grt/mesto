@@ -1,11 +1,12 @@
 .profile-card__title-cover {
   max-width: calc(100% - 100px);
+  display: flex;
   position: relative;
 }
 
 @media screen and (max-width: 880px) {
   .profile-card__title-cover {
-    max-width: calc(100% - 42px);
+    max-width: 100%;
   }
 }
 
