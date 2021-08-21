@@ -12,16 +12,6 @@
 </head>
 <body class="page-area">
   <div class="page page-area__alignment">
-    <!-- секция Popup -->
-    <section class="popup">
-      <form class="form-edit">
-        <button class="form-edit__button-close" type="button"></button>
-        <h2 class="form-edit__title">Редактировать профиль</h2>
-        <input class="form-edit__name" name="name" type="text">
-        <input class="form-edit__description" name="description" type="text">
-        <button class="form-edit__button-submit" type="submit">Сохранить</button>
-      </form>
-    </section>
     <!-- секция Header -->
     <header class="header page__header">
       <img class="header__logo" src="./images/logo.svg" alt="логотип сайта Место">
@@ -31,79 +21,76 @@
       <!-- секция Profile -->
       <section class="profile content__profile">
         <div class="profile-card">
-          <img class="profile-card__avatar" src="./images/avatar.jpg" alt="аватар пользователя">
+          <img class="profile-card__avatar" src="./images/avatar.jpg"
+          alt="аватар пользователя">
           <div class="profile-card__info">
             <div class="profile-card__title-cover">
               <h1 class="profile-card__title">Жак-Ив Кусто</h1>
-              <button class="profile-card__button-edit" type="button"></button>
+              <button class="profile-card__button-edit" type="button"
+              aria-label="кнопка Редактировать"></button>
             </div>
             <p class="profile-card__text">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button-add" type="button"></button>
+        <button class="profile__button-add" type="button"
+        aria-label="кнопка Добавить"></button>
       </section>
       <!-- секция Places -->
       <section class="places content__places" aria-label="Куда поехать?">
         <ul class="places-grid undecorated-list page__reset-alignment">
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-karachaevsk.jpg"
-              alt="Сентинский храм в Карачаево-Черкессии">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Карачаево-Черкессия</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-karachaevsk.jpg"
+            alt="Сентинский храм в Карачаево-Черкессии">
+            <div class="place__caption">
+              <h2 class="place__title">Карачаево-Черкессия</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-elbrus.jpg"
-              alt="вид на Эльбрус">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Гора Эльбрус</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-elbrus.jpg"
+            alt="вид на Эльбрус">
+            <div class="place__caption">
+              <h2 class="place__title">Гора Эльбрус</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-dombay.jpg"
-              alt="вид на Домбай">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Домбай</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-dombay.jpg"
+            alt="вид на Домбай">
+            <div class="place__caption">
+              <h2 class="place__title">Домбай</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-bermamyt.jpg"
-              alt="вид с плато Бермамыт">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Плато Бермамыт</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-bermamyt.jpg"
+            alt="вид с плато Бермамыт">
+            <div class="place__caption">
+              <h2 class="place__title">Плато Бермамыт</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-gamsutl.jpg"
-              alt="вид на село Гамсутль">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Гамсутль</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-gamsutl.jpg"
+            alt="вид на село Гамсутль">
+            <div class="place__caption">
+              <h2 class="place__title">Гамсутль</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
-          <li>
-            <figure class="place page__reset-alignment">
-              <img class="place__image" src="./images/place-dargavs.jpg"
-              alt="Город мёртвых в Даргавсе">
-              <figcaption class="place__caption">
-                <h2 class="place__title">Даргавс</h2>
-                <button class="place__button-like" type="button"></button>
-              </figcaption>
-            </figure>
+          <li class="place">
+            <img class="place__image" src="./images/place-dargavs.jpg"
+            alt="Город мёртвых в Даргавсе">
+            <div class="place__caption">
+              <h2 class="place__title">Даргавс</h2>
+              <button class="place__button-like" type="button"
+              aria-label="кнопка Лайк"></button>
+            </div>
           </li>
         </ul>
       </section>
@@ -112,6 +99,22 @@
     <footer class="footer page__footer">
       <p class="footer__copyright" lang="en">&copy; 2021 Mesto Russia</p>
     </footer>
+    <!-- секция Popup -->
+    <div class="popup">
+      <div class="form-edit" >
+        <button class="form-edit__button-close" type="button"
+        aria-label="кнопка Закрыть"></button>
+        <h2 class="form-edit__title">Редактировать профиль</h2>
+        <form class="form-edit__info" name="info">
+          <input class="form-edit__input form-edit__input_asgmt_name"
+          name="name" type="text">
+          <input class="form-edit__input form-edit__input_asgmt_description"
+          name="description" type="text">
+          <button class="form-edit__button-submit" type="submit"
+          aria-label="кнопка Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </div>
   <script src="./scripts/script.js"></script>
 </body>

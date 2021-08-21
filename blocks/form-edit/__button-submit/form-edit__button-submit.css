@@ -3,6 +3,7 @@
   height: 50px;
   border: 1px solid #000;
   border-radius: 2px;
+  margin: 18px 0 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #000;
@@ -25,6 +26,7 @@
   .form-edit__button-submit {
     width: 238px;
     height: 46px;
+    margin: 15px 0 0;
     font-size: 14px;
     line-height: 1.21;
   }

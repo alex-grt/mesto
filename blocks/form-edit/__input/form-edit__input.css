@@ -1,8 +1,9 @@
-.form-edit__name {
+.form-edit__input {
   width: 358px;
   padding-bottom: 8px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  outline: none;
   margin: 0 0 30px;
   box-sizing: border-box;
   display: block;
@@ -15,7 +16,7 @@
 }
 
 @media screen and (max-width: 580px) {
-  .form-edit__name {
+  .form-edit__input {
     width: 238px;
   }
 }
