@@ -15,8 +15,16 @@
   line-height: 1.21;
 }
 
+.form-edit__input:last-of-type {
+  margin: 0 0 48px;
+}
+
 @media screen and (max-width: 580px) {
   .form-edit__input {
     width: 238px;
+  }
+
+  .form-edit__input:last-of-type {
+    margin: 0 0 45px;
   }
 }
