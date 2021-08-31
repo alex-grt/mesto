@@ -11,15 +11,6 @@
 @import url('../blocks/page/__footer/page__footer.css');
 /* блок undecorated-list */
 @import url('../blocks/undecorated-list/undecorated-list.css');
-/* блок popup */
-@import url('../blocks/popup/popup.css');
-@import url('../blocks/popup/_opened/popup_opened.css');
-/* блок form-edit */
-@import url('../blocks/form-edit/form-edit.css');
-@import url('../blocks/form-edit/__button-close/form-edit__button-close.css');
-@import url('../blocks/form-edit/__title/form-edit__title.css');
-@import url('../blocks/form-edit/__input/form-edit__input.css');
-@import url('../blocks/form-edit/__button-submit/form-edit__button-submit.css');
 /* блок header */
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
@@ -42,6 +33,8 @@
 @import url('../blocks/places-grid/places-grid.css');
 /* блок place */
 @import url('../blocks/place/place.css');
+@import url('../blocks/place/__button-delete/place__button-delete.css');
+@import url('../blocks/place/__image-cover/place__image-cover.css');
 @import url('../blocks/place/__image/place__image.css');
 @import url('../blocks/place/__caption/place__caption.css');
 @import url('../blocks/place/__title/place__title.css');
@@ -50,3 +43,26 @@
 /* блок footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
+/* блок popup */
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/_background/popup_background_medium.css');
+@import url('../blocks/popup/_background/popup_background_deep.css');
+@import url('../blocks/popup/_opened/popup_opened.css');
+/* блок form-edit */
+@import url('../blocks/form-edit/form-edit.css');
+@import url('../blocks/form-edit/__button-close/form-edit__button-close.css');
+@import url('../blocks/form-edit/__title/form-edit__title.css');
+@import url('../blocks/form-edit/__input/form-edit__input.css');
+@import url('../blocks/form-edit/__button-submit/form-edit__button-submit.css');
+/* блок form-add */
+@import url('../blocks/form-add/form-add.css');
+@import url('../blocks/form-add/__button-close/form-add__button-close.css');
+@import url('../blocks/form-add/__title/form-add__title.css');
+@import url('../blocks/form-add/__input/form-add__input.css');
+@import url('../blocks/form-add/__button-submit/form-add__button-submit.css');
+/* блок form-illustration */
+@import url('../blocks/form-illustration/form-illustration.css');
+@import url('../blocks/form-illustration/__button-close/form-illustration__button-close.css');
+@import url('../blocks/form-illustration/__illustration/form-illustration__illustration.css');
+@import url('../blocks/form-illustration/__image/form-illustration__image.css');
+@import url('../blocks/form-illustration/__caption/form-illustration__caption.css');

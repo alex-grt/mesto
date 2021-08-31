@@ -21,15 +21,15 @@
       <!-- секция Profile -->
       <section class="profile content__profile">
         <div class="profile-card">
-          <img class="profile-card__avatar" src="./images/avatar.jpg"
+          <img class="profile-card__avatar" src="./images/avatar-Kruzenshtern.jpg"
           alt="аватар пользователя">
           <div class="profile-card__info">
             <div class="profile-card__title-cover">
-              <h1 class="profile-card__title">Жак-Ив Кусто</h1>
+              <h1 class="profile-card__title">Иван Фёдорович Крузенштерн</h1>
               <button class="profile-card__button-edit" type="button"
               aria-label="кнопка Редактировать"></button>
             </div>
-            <p class="profile-card__text">Исследователь океана</p>
+            <p class="profile-card__text">Человек и пароход</p>
           </div>
         </div>
         <button class="profile__button-add" type="button"
@@ -38,60 +38,6 @@
       <!-- секция Places -->
       <section class="places content__places" aria-label="Куда поехать?">
         <ul class="places-grid undecorated-list page__reset-alignment">
-          <li class="place">
-            <img class="place__image" src="./images/place-karachaevsk.jpg"
-            alt="Сентинский храм в Карачаево-Черкессии">
-            <div class="place__caption">
-              <h2 class="place__title">Карачаево-Черкессия</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/place-elbrus.jpg"
-            alt="вид на Эльбрус">
-            <div class="place__caption">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/place-dombay.jpg"
-            alt="вид на Домбай">
-            <div class="place__caption">
-              <h2 class="place__title">Домбай</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/place-bermamyt.jpg"
-            alt="вид с плато Бермамыт">
-            <div class="place__caption">
-              <h2 class="place__title">Плато Бермамыт</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/place-gamsutl.jpg"
-            alt="вид на село Гамсутль">
-            <div class="place__caption">
-              <h2 class="place__title">Гамсутль</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img class="place__image" src="./images/place-dargavs.jpg"
-            alt="Город мёртвых в Даргавсе">
-            <div class="place__caption">
-              <h2 class="place__title">Даргавс</h2>
-              <button class="place__button-like" type="button"
-              aria-label="кнопка Лайк"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -100,8 +46,8 @@
       <p class="footer__copyright" lang="en">&copy; 2021 Mesto Russia</p>
     </footer>
     <!-- секция Popup -->
-    <div class="popup">
-      <div class="form-edit" >
+    <div class="popup popup_background_medium" id="popup-edit">
+      <div class="form-edit">
         <button class="form-edit__button-close" type="button"
         aria-label="кнопка Закрыть"></button>
         <h2 class="form-edit__title">Редактировать профиль</h2>
@@ -115,6 +61,46 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_background_medium" id="popup-add">
+      <div class="form-add">
+        <button class="form-add__button-close" type="button"
+        aria-label="кнопка Закрыть"></button>
+        <h2 class="form-add__title">Новое место</h2>
+        <form class="form-add__place" name="place">
+          <input class="form-add__input form-add__input_asgmt_name"
+          name="name" type="text" placeholder="Название">
+          <input class="form-add__input form-add__input_asgmt_link"
+          name="link" type="text" placeholder="Ссылка на картинку">
+          <button class="form-add__button-submit" type="submit"
+          aria-label="кнопка Создать">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_background_deep" id="popup-image">
+      <div class="form-illustration">
+        <button class="form-illustration__button-close" type="button"
+        aria-label="кнопка Закрыть"></button>
+        <figure class="form-illustration__illustration page__reset-alignment">
+          <img class="form-illustration__image" src="src" alt="alt">
+          <figcaption class="form-illustration__caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <!-- секция Templates -->
+    <template id="template-place">
+      <li class="place">
+        <button class="place__button-delete" type="button"
+          aria-label="кнопка Удалить"></button>
+        <div class="place__image-cover">
+          <img class="place__image" src="" alt="">
+        </div>
+        <div class="place__caption">
+          <h2 class="place__title"></h2>
+          <button class="place__button-like" type="button"
+          aria-label="кнопка Лайк"></button>
+        </div>
+      </li>
+    </template>
   </div>
   <script src="./scripts/script.js"></script>
 </body>

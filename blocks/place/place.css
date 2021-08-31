@@ -1,5 +1,6 @@
 .place {
   border-radius: 10px;
+  position: relative;
   overflow: hidden;
   background-color: #fff;
   color: #000;
