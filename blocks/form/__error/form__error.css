@@ -1,0 +1,12 @@
+.form__error {
+  margin: 5px 0 0;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  color: #f00;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.25;
+}

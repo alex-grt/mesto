@@ -1,4 +1,4 @@
-.form-add__button-close {
+.popup__button-close {
   min-width: 32px;
   height: 32px;
   border: none;
@@ -15,13 +15,13 @@
   transition: .4s;
 }
 
-.form-add__button-close:hover {
+.popup__button-close:hover {
   cursor: pointer;
   opacity: .6;
 }
 
 @media screen and (max-width: 580px) {
-  .form-add__button-close {
+  .popup__button-close {
     min-width: 20px;
     height: 20px;
     top: -36px;

@@ -48,21 +48,19 @@
 @import url('../blocks/popup/_background/popup_background_medium.css');
 @import url('../blocks/popup/_background/popup_background_deep.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
-/* блок form-edit */
-@import url('../blocks/form-edit/form-edit.css');
-@import url('../blocks/form-edit/__button-close/form-edit__button-close.css');
-@import url('../blocks/form-edit/__title/form-edit__title.css');
-@import url('../blocks/form-edit/__input/form-edit__input.css');
-@import url('../blocks/form-edit/__button-submit/form-edit__button-submit.css');
-/* блок form-add */
-@import url('../blocks/form-add/form-add.css');
-@import url('../blocks/form-add/__button-close/form-add__button-close.css');
-@import url('../blocks/form-add/__title/form-add__title.css');
-@import url('../blocks/form-add/__input/form-add__input.css');
-@import url('../blocks/form-add/__button-submit/form-add__button-submit.css');
-/* блок form-illustration */
-@import url('../blocks/form-illustration/form-illustration.css');
-@import url('../blocks/form-illustration/__button-close/form-illustration__button-close.css');
-@import url('../blocks/form-illustration/__illustration/form-illustration__illustration.css');
-@import url('../blocks/form-illustration/__image/form-illustration__image.css');
-@import url('../blocks/form-illustration/__caption/form-illustration__caption.css');
+@import url('../blocks/popup/__button-close/popup__button-close.css');
+/* блок form */
+@import url('../blocks/form/form.css');
+@import url('../blocks/form/__title/form__title.css');
+@import url('../blocks/form/__cover-input/form__cover-input.css');
+@import url('../blocks/form/__input/form__input.css');
+@import url('../blocks/form/__input/_invalid/form__input_invalid.css');
+@import url('../blocks/form/__error/form__error.css');
+@import url('../blocks/form/__error/_visible/form__error_visible.css');
+@import url('../blocks/form/__button-submit/form__button-submit.css');
+@import url('../blocks/form/__button-submit/_inactive/form__button-submit_inactive.css');
+/* блок illustration */
+@import url('../blocks/illustration/illustration.css');
+@import url('../blocks/illustration/__illustration/illustration__illustration.css');
+@import url('../blocks/illustration/__image/illustration__image.css');
+@import url('../blocks/illustration/__caption/illustration__caption.css');

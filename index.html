@@ -26,13 +26,13 @@
           <div class="profile-card__info">
             <div class="profile-card__title-cover">
               <h1 class="profile-card__title">Иван Фёдорович Крузенштерн</h1>
-              <button class="profile-card__button-edit" type="button"
+              <button class="button-open profile-card__button-edit" type="button"
               aria-label="кнопка Редактировать"></button>
             </div>
             <p class="profile-card__text">Человек и пароход</p>
           </div>
         </div>
-        <button class="profile__button-add" type="button"
+        <button class="button-open profile__button-add" type="button"
         aria-label="кнопка Добавить"></button>
       </section>
       <!-- секция Places -->
@@ -46,43 +46,59 @@
       <p class="footer__copyright" lang="en">&copy; 2021 Mesto Russia</p>
     </footer>
     <!-- секция Popup -->
-    <div class="popup popup_background_medium" id="popup-edit">
-      <div class="form-edit">
-        <button class="form-edit__button-close" type="button"
+    <!-- форма редактирования профиля -->
+    <div class="popup popup_type_profile popup_background_medium">
+      <div class="form">
+        <button class="popup__button-close popup__button-close_type_profile" type="button"
         aria-label="кнопка Закрыть"></button>
-        <h2 class="form-edit__title">Редактировать профиль</h2>
-        <form class="form-edit__info" name="info">
-          <input class="form-edit__input form-edit__input_asgmt_name"
-          name="name" type="text">
-          <input class="form-edit__input form-edit__input_asgmt_description"
-          name="description" type="text">
-          <button class="form-edit__button-submit" type="submit"
+        <h2 class="form__title">Редактировать профиль</h2>
+        <form class="form__info" name="info" novalidate>
+          <div class="form__cover-input">
+            <input class="form__input form__input_asgmt_name" name="name"
+            id="input-name" type="text" minlength="2" maxlength="40" required>
+            <span class="form__error" id="input-name-error"></span>
+          </div>
+          <div class="form__cover-input">
+            <input class="form__input form__input_asgmt_description" name="description"
+            id="input-description" type="text" minlength="2" maxlength="200" required>
+            <span class="form__error" id="input-description-error"></span>
+          </div>
+          <button class="form__button-submit" type="submit"
           aria-label="кнопка Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
-    <div class="popup popup_background_medium" id="popup-add">
-      <div class="form-add">
-        <button class="form-add__button-close" type="button"
+    <!-- форма добавления карточки места -->
+    <div class="popup popup_type_place popup_background_medium">
+      <div class="form">
+        <button class="popup__button-close popup__button-close_type_place" type="button"
         aria-label="кнопка Закрыть"></button>
-        <h2 class="form-add__title">Новое место</h2>
-        <form class="form-add__place" name="place">
-          <input class="form-add__input form-add__input_asgmt_name"
-          name="name" type="text" placeholder="Название">
-          <input class="form-add__input form-add__input_asgmt_link"
-          name="link" type="url" placeholder="Ссылка на картинку">
-          <button class="form-add__button-submit" type="submit"
+        <h2 class="form__title">Новое место</h2>
+        <form class="form__place" name="place" novalidate>
+          <div class="form__cover-input">
+            <input class="form__input form__input_asgmt_name-place" name="name-place"
+            id="input-name-place" type="text" placeholder="Название" minlength="2"
+            maxlength="30" required>
+            <span class="form__error" id="input-name-place-error"></span>
+          </div>
+          <div class="form__cover-input">
+            <input class="form__input form__input_asgmt_link" name="link"
+            id="input-link" type="url" placeholder="Ссылка на картинку" required>
+            <span class="form__error" id="input-link-error"></span>
+          </div>
+          <button class="form__button-submit" type="submit"
           aria-label="кнопка Создать">Создать</button>
         </form>
       </div>
     </div>
-    <div class="popup popup_background_deep" id="popup-image">
-      <div class="form-illustration">
-        <button class="form-illustration__button-close" type="button"
+    <!-- форма отображения иллюстрации -->
+    <div class="popup popup_type_illustration popup_background_deep">
+      <div class="illustration">
+        <button class="popup__button-close popup__button-close_type_illustration" type="button"
         aria-label="кнопка Закрыть"></button>
-        <figure class="form-illustration__illustration page__reset-alignment">
-          <img class="form-illustration__image" src="src" alt="alt">
-          <figcaption class="form-illustration__caption"></figcaption>
+        <figure class="illustration__illustration page__reset-alignment">
+          <img class="illustration__image" src="src" alt="alt">
+          <figcaption class="illustration__caption"></figcaption>
         </figure>
       </div>
     </div>
@@ -103,5 +119,6 @@
     </template>
   </div>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
