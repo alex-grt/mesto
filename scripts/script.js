@@ -1,5 +1,6 @@
 /* <<<раздел объявления переменных>>> */
 /* Popup */
+const popupList = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupPlace = document.querySelector('.popup_type_place');
 const popupIllustration = document.querySelector('.popup_type_illustration');
@@ -10,10 +11,15 @@ const buttonCloseIllustration = popupIllustration.querySelector('.popup__button-
 const formProfile = document.querySelector('.form__info');
 const inputNameProfile = formProfile.querySelector('.form__input_asgmt_name');
 const inputDescriptionProfile = formProfile.querySelector('.form__input_asgmt_description');
+const buttonSubmitProfile = formProfile.querySelector('.form__button-submit_type_profile');
 /* форма добавления карточки места */
 const formPlace = document.querySelector('.form__place');
 const inputNamePlace = formPlace.querySelector('.form__input_asgmt_name-place');
 const inputLinkPlace = formPlace.querySelector('.form__input_asgmt_link');
+const buttonSubmitPlace = formPlace.querySelector('.form__button-submit_type_place');
+/* форма отображения иллюстрации */
+const illustrationImage = popupIllustration.querySelector('.illustration__image');
+const illustrationCaption = popupIllustration.querySelector('.illustration__caption');
 /* данные для проверки форм */
 const listSelector = {
   formSelector: '.form',
@@ -33,7 +39,7 @@ const buttonAdd = sectionProfile.querySelector('.profile__button-add');
 const templatePlace = document.querySelector('#template-place').content;
 /* секция Places */
 const placesGrid = document.querySelector('.places-grid');
-const placesCards = [
+const cardsPlaces = [
   {
     name: 'Даргавс',
     link: './images/place-dargavs.jpg'
@@ -64,14 +70,15 @@ const placesCards = [
 /* <<<раздел объявления общих функций>>> */
 /* создание карточки места */
 function createCard(data) {
-  const placeCard = templatePlace.querySelector('.place').cloneNode(true);
-  placeCard.querySelector('.place__image').src = data.link;
-  placeCard.querySelector('.place__image').alt = data.name;
-  placeCard.querySelector('.place__title').textContent = data.name;
-  placeCard.querySelector('.place__button-delete').addEventListener('click', deletePlace);
-  placeCard.querySelector('.place__button-like').addEventListener('click', likePlace);
-  placeCard.querySelector('.place__image').addEventListener('click', () => showIllustration(data));
-  return placeCard;
+  const cardPlace = templatePlace.querySelector('.place').cloneNode(true);
+  const imagePlace = cardPlace.querySelector('.place__image');
+  imagePlace.src = data.link;
+  imagePlace.alt = data.name;
+  cardPlace.querySelector('.place__title').textContent = data.name;
+  cardPlace.querySelector('.place__button-delete').addEventListener('click', deletePlace);
+  cardPlace.querySelector('.place__button-like').addEventListener('click', likePlace);
+  imagePlace.addEventListener('click', () => showIllustration(data));
+  return cardPlace;
 }
 
 /* добавление карточки места на страницу */
@@ -81,18 +88,18 @@ function addCard(section, element) {
 
 /* создание данных карточки места */
 function createCardData(name, link) {
-  const placeCardNew = {
+  const cardPlaceNew = {
     name: name.value,
     link: link.value
   };
-  return placeCardNew;
+  return cardPlaceNew;
 }
 
 /* показ иллюстрации */
 function showIllustration(data) {
-  popupIllustration.querySelector('.illustration__image').src = data.link;
-  popupIllustration.querySelector('.illustration__image').alt = data.name;
-  popupIllustration.querySelector('.illustration__caption').textContent = data.name;
+  illustrationImage.src = data.link;
+  illustrationImage.alt = data.name;
+  illustrationCaption.textContent = data.name;
 
   openForm(popupIllustration);
 }
@@ -107,31 +114,36 @@ function likePlace(evt) {
   evt.target.classList.toggle('place__button-like_active');
 };
 
+/* очистка формы от ошибок ввода */
+function clearInputError(formElement) {
+  const inputList = formElement.querySelectorAll(listSelector.inputSelector);
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, listSelector.inputErrorClass,
+      listSelector.errorClass);
+  });
+}
+
 /* открытие формы */
 function openForm(popup) {
   popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', (evt) => closeFormEscape(evt, popup));
+  document.addEventListener('keydown', closeByEscape);
 }
 
 /* закрытие формы */
 // по клавише Escape
-function closeFormEscape(evt, popup) {
+function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    closeForm(popup);
+    const openedPopup = document.querySelector('.popup_opened');
+
+    closeForm(openedPopup);
   }
 }
 // по кнопке
 function closeForm(popup) {
   popup.classList.remove('popup_opened');
 
-  document.removeEventListener('keydown', (evt) => closeFormEscape(evt, popup));
-}
-// по клику по оверлею
-function closeOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closeForm(evt.target);
-  }
+  document.removeEventListener('keydown', closeByEscape);
 }
 /* <<<окончание раздела>>> */
 
@@ -161,7 +173,7 @@ function submitFormPlace (evt) {
 
 /* <<<раздел Places>>> */
 /* заполнение страницы карточками мест */
-placesCards.forEach(function(item) {
+cardsPlaces.forEach(function(item) {
   addCard(placesGrid, createCard(item));
 });
 /* <<<окончание раздела>>> */
@@ -170,6 +182,8 @@ placesCards.forEach(function(item) {
 /* открытие форм */
 // редактирования профиля
 buttonEdit.addEventListener('click', () => {
+  clearInputError(formProfile);
+  enableButtonSubmit(buttonSubmitProfile, listSelector.inactiveButtonClass);
   openForm(popupProfile);
 
   inputNameProfile.value = profileName.textContent;
@@ -178,19 +192,24 @@ buttonEdit.addEventListener('click', () => {
 // добавления карточки места
 buttonAdd.addEventListener('click', () => {
   formPlace.reset();
+  clearInputError(formPlace);
+  disableButtonSubmit(buttonSubmitPlace, listSelector.inactiveButtonClass);
   openForm(popupPlace);
 });
+
 /* отправка форм */
 formProfile.addEventListener('submit', submitFormProfile);
 formPlace.addEventListener('submit', submitFormPlace);
+
 /* закрытие форм */
-// редактирования профиля
-buttonCloseProfile.addEventListener('click', () => closeForm(popupProfile));
-popupProfile.addEventListener('click', (evt) => closeOverlay(evt));
-// добавления карточки места
-buttonClosePlace.addEventListener('click', () => closeForm(popupPlace));
-popupPlace.addEventListener('click', (evt) => closeOverlay(evt));
-// иллюстрации
-buttonCloseIllustration.addEventListener('click', () => closeForm(popupIllustration));
-popupIllustration.addEventListener('click', (evt) => closeOverlay(evt));
+popupList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closeForm(popup);
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closeForm(popup);
+    }
+  });
+});
 /* <<<окончание раздела>>> */

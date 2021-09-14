@@ -14,13 +14,6 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
   errorElement.textContent = '';
 }
 
-/* скрытие ошибки ввода данных при закрытии формы */
-function setCloseListener(formElement, inputElement, inputErrorClass, errorClass) {
-  const buttonClose = formElement.querySelector('.popup__button-close');
-  buttonClose.addEventListener('click', () => hideInputError(formElement,
-    inputElement, inputErrorClass, errorClass));
-}
-
 /* проверка поля ввода */
 function checkInputValid(formElement, inputElement, inputErrorClass, errorClass) {
   if (!inputElement.validity.valid) {
@@ -81,14 +74,6 @@ function setEventListeners(formElement, inputSelector, inputErrorClass,
       checkInputValid(formElement, inputElement, inputErrorClass, errorClass);
       toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
     });
-
-    setCloseListener(formElement, inputElement, inputErrorClass, errorClass)
-  });
-
-  const buttonOpenList = document.querySelectorAll('.button-open');
-  buttonOpenList.forEach((buttonOpen) => {
-    buttonOpen.addEventListener('click', () => toggleButtonState(formElement,
-      inputList, submitButtonSelector, inactiveButtonClass));
   });
 }
 
