@@ -32,7 +32,7 @@ const profileDescription = sectionProfile.querySelector('.profile-card__text');
 const buttonEdit = sectionProfile.querySelector('.profile-card__button-edit');
 const buttonAdd = sectionProfile.querySelector('.profile__button-add');
 /* шаблон для секции Places */
-const templatePlace = document.querySelector('#template-place').content;
+const templateSelector = '#template-place';
 /* секция Places */
 const placesGrid = document.querySelector('.places-grid');
 const cardsPlaces = [
@@ -73,6 +73,14 @@ function createCardData(name, link) {
   return cardPlaceNew;
 }
 
+/* создание копии класса карточки места */
+function copyClass(data) {
+  const card = new Card (data, templateSelector);
+  const cardElement = card.createCard();
+
+  return cardElement;
+}
+
 /* добавление карточки места на страницу */
 function addCard(section, element) {
   section.prepend(element);
@@ -104,9 +112,7 @@ function closeForm(popup) {
 
 /* <<<раздел формы редактирования профиля>>> */
 /* отправка данных, введённых в форму редактирования профиля */
-function submitFormProfile (evt) {
-  evt.preventDefault();
-
+function submitFormProfile() {
   profileName.textContent = inputNameProfile.value;
   profileDescription.textContent = inputDescriptionProfile.value;
 
@@ -116,14 +122,10 @@ function submitFormProfile (evt) {
 
 /* <<<раздел формы добавления карточки места>>> */
 /* отправка данных, введённых в форму добавления карточки места */
-function submitFormPlace(evt) {
-  evt.preventDefault();
-
+function submitFormPlace() {
   const cardData = createCardData(inputNamePlace, inputLinkPlace);
-  const card = new Card (cardData, templatePlace);
-  const cardElement = card.createCard();
 
-  addCard(placesGrid, cardElement);
+  addCard(placesGrid, copyClass(cardData));
   closeForm(popupPlace);
 }
 /* <<<окончание раздела>>> */
@@ -131,10 +133,7 @@ function submitFormPlace(evt) {
 /* <<<раздел Places>>> */
 /* заполнение страницы карточками мест */
 cardsPlaces.forEach((item) => {
-  const card = new Card (item, templatePlace);
-  const cardElement = card.createCard();
-
-  addCard(placesGrid, cardElement);
+  addCard(placesGrid, copyClass(item));
 });
 /* <<<окончание раздела>>> */
 
@@ -167,10 +166,8 @@ formPlace.addEventListener('submit', submitFormPlace);
 /* закрытие форм */
 popupList.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closeForm(popup);
-    }
-    if (evt.target.classList.contains('popup__button-close')) {
+    if (evt.target.classList.contains('popup_opened') ||
+    evt.target.classList.contains('popup__button-close')) {
       closeForm(popup);
     }
   });
