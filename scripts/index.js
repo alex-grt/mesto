@@ -25,6 +25,9 @@ const listSelector = {
   inputErrorClass: 'form__input_invalid',
   errorClass: 'form__error_visible'
 };
+/* проверка форм */
+const formProfileValidator = new FormValidator(listSelector, formProfile);
+const formPlaceValidator = new FormValidator(listSelector, formPlace);
 /* секция Profile */
 const sectionProfile = document.querySelector('.profile');
 const profileName = sectionProfile.querySelector('.profile-card__title');
@@ -144,18 +147,13 @@ buttonEdit.addEventListener('click', () => {
   inputNameProfile.value = profileName.textContent;
   inputDescriptionProfile.value = profileDescription.textContent;
 
-  const formValidator = new FormValidator(listSelector, formProfile);
-
-  formValidator.enableValidation();
+  formProfileValidator.enableValidation();
   openForm(popupProfile);
 });
 // добавления карточки места
 buttonAdd.addEventListener('click', () => {
   formPlace.reset();
-
-  const formValidator = new FormValidator(listSelector, formPlace);
-
-  formValidator.enableValidation();
+  formPlaceValidator.enableValidation();
   openForm(popupPlace);
 });
 
