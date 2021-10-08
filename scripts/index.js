@@ -121,6 +121,9 @@ function submitFormProfile() {
 
   closeForm(popupProfile);
 }
+
+/* проверка формы */
+formProfileValidator.enableValidation();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел формы добавления карточки места>>> */
@@ -131,6 +134,9 @@ function submitFormPlace() {
   addCard(placesGrid, copyClass(cardData));
   closeForm(popupPlace);
 }
+
+/* проверка формы */
+formPlaceValidator.enableValidation();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел Places>>> */
@@ -147,13 +153,13 @@ buttonEdit.addEventListener('click', () => {
   inputNameProfile.value = profileName.textContent;
   inputDescriptionProfile.value = profileDescription.textContent;
 
-  formProfileValidator.enableValidation();
+  formProfileValidator.resetValidation();
   openForm(popupProfile);
 });
 // добавления карточки места
 buttonAdd.addEventListener('click', () => {
   formPlace.reset();
-  formPlaceValidator.enableValidation();
+  formPlaceValidator.resetValidation();
   openForm(popupPlace);
 });
 

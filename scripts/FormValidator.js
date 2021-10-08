@@ -8,6 +8,8 @@ export class FormValidator {
     this._inactiveButtonClass = listSelector.inactiveButtonClass;
     this._inputErrorClass = listSelector.inputErrorClass;
     this._errorClass = listSelector.errorClass;
+    this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = formElement.querySelector(this._submitButtonSelector);
   }
 
   /* отображение ошибки ввода данных */
@@ -36,39 +38,37 @@ export class FormValidator {
   }
 
   /* отключение кнопки отправки формы */
-  _disableButtonSubmit(buttonElement) {
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+  _disableButtonSubmit() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   }
 
   /* включение кнопки отправки формы */
-  _enableButtonSubmit(buttonElement) {
-    buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+  _enableButtonSubmit() {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
   }
 
   /* проверка формы */
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
   /* проверка формы на пустые поля */
-  _hasEmptyValue(inputList) {
-    return inputList.some((inputElement) => {
+  _hasEmptyValue() {
+    return this._inputList.some((inputElement) => {
       return inputElement.value.length === 0;
     });
   }
 
   /* переключение состояния кнопки отправки формы */
-  _toggleButtonState(inputList) {
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-
-    if (this._hasInvalidInput(inputList) || this._hasEmptyValue(inputList)) {
-      this._disableButtonSubmit(buttonElement);
+  _toggleButtonState() {
+    if (this._hasInvalidInput() || this._hasEmptyValue()) {
+      this._disableButtonSubmit();
     } else {
-      this._enableButtonSubmit(buttonElement);
+      this._enableButtonSubmit();
     }
   }
 
@@ -78,17 +78,20 @@ export class FormValidator {
       evt.preventDefault();
     });
 
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-
-    this._toggleButtonState(inputList);
-
-    inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValid(inputElement);
-        this._toggleButtonState(inputList);
+        this._toggleButtonState();
       });
+    });
+  }
+
+  /* сброс проверки формы */
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
     });
   }
 
