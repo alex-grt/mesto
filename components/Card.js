@@ -1,22 +1,10 @@
-import { openForm, popupIllustration } from "./index.js";
-
 /* класс создания карточки */
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-  }
-
-  /* показ иллюстрации */
-  _showIllustration() {
-    const image = popupIllustration.querySelector('.illustration__image');
-    const caption = popupIllustration.querySelector('.illustration__caption');
-    image.src = this._link;
-    image.alt = this._name;
-    caption.textContent = this._name;
-
-    openForm(popupIllustration);
+    this._handleCardClick = handleCardClick;
   }
 
   /* удаление карточки места */
@@ -30,12 +18,12 @@ export class Card {
   };
 
   /* добавление обработчиков */
-  _setHandlers() {
+  _setEventListeners() {
     this._card.querySelector('.place__button-delete')
     .addEventListener('click', () => this._deletePlace());
     this._card.querySelector('.place__button-like')
     .addEventListener('click', this._likePlace);
-    this._image.addEventListener('click', () => this._showIllustration());
+    this._image.addEventListener('click', () => this._handleCardClick(this._link, this._name));
   }
 
   /* получение разметки карточки из шаблона */
@@ -55,7 +43,7 @@ export class Card {
     this._image.alt = this._name;
     this._card.querySelector('.place__title').textContent = this._name;
 
-    this._setHandlers();
+    this._setEventListeners();
 
     return this._card;
   }
