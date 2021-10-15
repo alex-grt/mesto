@@ -23,7 +23,7 @@ export class Card {
     .addEventListener('click', () => this._deletePlace());
     this._card.querySelector('.place__button-like')
     .addEventListener('click', this._likePlace);
-    this._image.addEventListener('click', () => this._handleCardClick(this._link, this._name));
+    this._image.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 
   /* получение разметки карточки из шаблона */

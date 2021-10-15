@@ -1,13 +1,13 @@
 /* класс валидации форм */
 export class FormValidator {
-  constructor(listSelector, formElement) {
+  constructor(selectorsList, formElement) {
     this._formElement = formElement;
-    this._formSelector = listSelector.formSelector;
-    this._inputSelector = listSelector.inputSelector;
-    this._submitButtonSelector = listSelector.submitButtonSelector;
-    this._inactiveButtonClass = listSelector.inactiveButtonClass;
-    this._inputErrorClass = listSelector.inputErrorClass;
-    this._errorClass = listSelector.errorClass;
+    this._formSelector = selectorsList.formSelector;
+    this._inputSelector = selectorsList.inputSelector;
+    this._submitButtonSelector = selectorsList.submitButtonSelector;
+    this._inactiveButtonClass = selectorsList.inactiveButtonClass;
+    this._inputErrorClass = selectorsList.inputErrorClass;
+    this._errorClass = selectorsList.errorClass;
     this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = formElement.querySelector(this._submitButtonSelector);
   }

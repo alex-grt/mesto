@@ -22,7 +22,7 @@ import {
   /* форма добавления карточки места */
   formPlace,
   /* данные для проверки форм */
-  listSelector,
+  selectorsList,
   /* секция Profile */
   profileNameSelector,
   profileDescriptionSelector,
@@ -37,7 +37,7 @@ import {
 
 /* <<<раздел объявления общих функций и классов>>> */
 /* создание копии класса карточки места */
-function copyClass(data) {
+function createCard(data) {
   const card = new Card(data, templateSelector, handleCardClick);
   const cardElement = card.createCard();
 
@@ -45,8 +45,9 @@ function copyClass(data) {
 }
 
 /* создание копий класса Popup */
-const popupProfile = new PopupWithForm(popupProfileSelector, submitFormProfile, formProfile);
-const popupPlace = new PopupWithForm(popupPlaceSelector, submitFormPlace, formPlace);
+const popupProfile = new PopupWithForm(popupProfileSelector, submitFormProfile);
+const popupPlace = new PopupWithForm(popupPlaceSelector, submitFormPlace);
+const popupIllustration = new PopupWithImage(popupIllustrationSelector);
 
 /* создание копии класса UserInfo */
 const userInfo = new UserInfo({ profileNameSelector, profileDescriptionSelector });
@@ -57,7 +58,7 @@ const userInfo = new UserInfo({ profileNameSelector, profileDescriptionSelector 
 const cardsList = new Section({
   items: cardsPlaces,
   renderer: (item) => {
-    cardsList.addItem(copyClass(item));
+    cardsList.addItem(createCard(item));
   }
 }, placesGrid);
 
@@ -74,7 +75,7 @@ function submitFormProfile(info) {
 popupProfile.setEventListeners();
 
 /* проверка формы */
-const formProfileValidator = new FormValidator(listSelector, formProfile);
+const formProfileValidator = new FormValidator(selectorsList, formProfile);
 
 formProfileValidator.enableValidation();
 /* <<<окончание раздела>>> */
@@ -82,33 +83,25 @@ formProfileValidator.enableValidation();
 /* <<<раздел формы добавления карточки места>>> */
 /* отправка данных, введённых в форму добавления карточки места */
 function submitFormPlace(cardData) {
-  const cardsList = new Section({
-    items: [cardData],
-    renderer: (item) => {
-      cardsList.addItem(copyClass(item));
-    }
-  }, placesGrid);
-
-  cardsList.renderItems();
+  cardsList.addItem(createCard(cardData));
   popupPlace.close();
 }
 
 popupPlace.setEventListeners();
 
 /* проверка формы */
-const formPlaceValidator = new FormValidator(listSelector, formPlace);
+const formPlaceValidator = new FormValidator(selectorsList, formPlace);
 
 formPlaceValidator.enableValidation();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел отображения иллюстрации>>> */
-/* создание копии класса отображения иллюстрации */
-function handleCardClick(link, name) {
-  const popupIllustration = new PopupWithImage(popupIllustrationSelector, link, name);
-
-  popupIllustration.open();
-  popupIllustration.setEventListeners();
+/* отображение иллюстрации */
+function handleCardClick(name, link) {
+  popupIllustration.open(name, link);
 }
+
+popupIllustration.setEventListeners();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел отслеживания действий пользователя>>> */

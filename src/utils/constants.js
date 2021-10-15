@@ -21,7 +21,7 @@ export const inputDescriptionProfile = formProfile
 export const formPlace = document.querySelector('.form__place');
 
 /* данные для проверки форм */
-export const listSelector = {
+export const selectorsList = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__button-submit',

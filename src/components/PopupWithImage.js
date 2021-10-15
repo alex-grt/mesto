@@ -2,19 +2,17 @@ import { Popup } from "./Popup.js";
 
 /* класс отображения иллюстрации */
 export class PopupWithImage extends Popup {
-  constructor(popupSelector, link, name) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._link = link;
-    this._name = name;
+    this._image = this._popup.querySelector('.illustration__image');
+    this._caption = this._popup.querySelector('.illustration__caption');
   }
 
   /* открытие формы */
-  open() {
-    const image = document.querySelector('.illustration__image');
-    const caption = document.querySelector('.illustration__caption');
-    image.src = this._link;
-    image.alt = this._name;
-    caption.textContent = this._name;
+  open(name, link) {
+    this._image.src = link;
+    this._image.alt = name;
+    this._caption.textContent = name;
 
     super.open();
   }
