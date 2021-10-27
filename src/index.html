@@ -20,8 +20,11 @@
       <!-- секция Profile -->
       <section class="profile content__profile">
         <div class="profile-card">
-          <img class="profile-card__avatar" src="<%=require('./images/avatar-Kruzenshtern.jpg')%>"
-          alt="аватар пользователя">
+          <div class="profile-card__avatar-cover">
+            <img class="profile-card__avatar" src="<%=require('./images/avatar-Kruzenshtern.jpg')%>"
+            alt="аватар пользователя">
+            <div class="profile-card__avatar-edit"></div>
+          </div>
           <div class="profile-card__info">
             <div class="profile-card__title-cover">
               <h1 class="profile-card__title">Иван Фёдорович Крузенштерн</h1>
@@ -45,6 +48,23 @@
       <p class="footer__copyright" lang="en">&copy; 2021 Mesto Russia</p>
     </footer>
     <!-- секция Popup -->
+    <!-- форма редактирования аватара -->
+    <div class="popup popup_type_avatar popup_background_medium">
+      <div class="form">
+        <button class="popup__button-close popup__button-close_type_avatar" type="button"
+        aria-label="кнопка Закрыть"></button>
+        <h2 class="form__title">Обновить аватар</h2>
+        <form class="form__avatar form-area" name="place" novalidate>
+          <div class="form__cover-input">
+            <input class="form__input form__input_asgmt_link" name="avatar"
+            id="input-link-avatar" type="url" placeholder="Ссылка на картинку" required>
+            <span class="form__error" id="input-link-avatar-error"></span>
+          </div>
+          <button class="form__button-submit form__button-submit_type_avatar" type="submit"
+          aria-label="кнопка Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <!-- форма редактирования профиля -->
     <div class="popup popup_type_profile popup_background_medium">
       <div class="form">
@@ -58,10 +78,10 @@
             <span class="form__error" id="input-name-error"></span>
           </div>
           <div class="form__cover-input">
-            <input class="form__input form__input_asgmt_description" name="description"
-            id="input-description" type="text" placeholder="Профессиональная деятельность"
+            <input class="form__input form__input_asgmt_about" name="about"
+            id="input-about" type="text" placeholder="Профессиональная деятельность"
             minlength="2" maxlength="200" required>
-            <span class="form__error" id="input-description-error"></span>
+            <span class="form__error" id="input-about-error"></span>
           </div>
           <button class="form__button-submit form__button-submit_type_profile" type="submit"
           aria-label="кнопка Сохранить">Сохранить</button>
@@ -91,6 +111,16 @@
         </form>
       </div>
     </div>
+    <!-- форма подтверждения удаления карточки места -->
+    <div class="popup popup_type_confirmation popup_background_medium">
+      <div class="form">
+        <button class="popup__button-close popup__button-close_type_confirmation" type="button"
+        aria-label="кнопка Закрыть"></button>
+        <h2 class="form__title form__title_type_confirmation">Вы уверены?</h2>
+        <button class="form__button-submit form__button-submit_type_confirmation" type="button"
+        aria-label="кнопка подтверждения">Да</button>
+      </div>
+    </div>
     <!-- форма отображения иллюстрации -->
     <div class="popup popup_type_illustration popup_background_deep">
       <div class="illustration">
@@ -112,8 +142,11 @@
         </div>
         <div class="place__caption">
           <h2 class="place__title"></h2>
-          <button class="place__button-like" type="button"
-          aria-label="кнопка Лайк"></button>
+          <div class="place__cover-like">
+            <button class="place__button-like" type="button"
+            aria-label="кнопка Лайк"></button>
+            <p class="place__counter-likes">0</p>
+          </div>
         </div>
       </li>
     </template>

@@ -1,21 +1,18 @@
-/* изображения */
-const dargavs = new URL('../images/place-dargavs.jpg', import.meta.url);
-const teriberka = new URL('../images/place-teriberka.jpg', import.meta.url);
-const bermamyt = new URL('../images/place-bermamyt.jpg', import.meta.url);
-const kamchatka = new URL('../images/place-kamchatka.jpg', import.meta.url);
-const usva = new URL('../images/place-usva.jpg', import.meta.url);
-const pskov = new URL('../images/place-pskov.jpg', import.meta.url);
-
 /* Popup */
+export const popupAvatarSelector = '.popup_type_avatar';
 export const popupProfileSelector = '.popup_type_profile';
 export const popupPlaceSelector = '.popup_type_place';
 export const popupIllustrationSelector = '.popup_type_illustration';
+export const popupConfirmationSelector = '.popup_type_confirmation';
+
+/* форма редактирования аватара */
+export const formAvatar = document.querySelector('.form__avatar');
 
 /* форма редактирования профиля */
 export const formProfile = document.querySelector('.form__info');
 export const inputNameProfile = formProfile.querySelector('.form__input_asgmt_name');
-export const inputDescriptionProfile = formProfile
-.querySelector('.form__input_asgmt_description');
+export const inputAboutProfile = formProfile
+.querySelector('.form__input_asgmt_about');
 
 /* форма добавления карточки места */
 export const formPlace = document.querySelector('.form__place');
@@ -31,8 +28,10 @@ export const selectorsList = {
 };
 
 /* секция Profile */
+export const avatarSelector = '.profile-card__avatar';
 export const profileNameSelector = '.profile-card__title';
-export const profileDescriptionSelector = '.profile-card__text';
+export const profileAboutSelector = '.profile-card__text';
+export const buttonAvatar = document.querySelector('.profile-card__avatar-cover');
 export const buttonEdit = document.querySelector('.profile-card__button-edit');
 export const buttonAdd = document.querySelector('.profile__button-add');
 
@@ -41,29 +40,3 @@ export const templateSelector = '#template-place';
 
 /* секция Places */
 export const placesGrid = '.places-grid';
-export const cardsPlaces = [
-  {
-    name: 'Даргавс',
-    link: dargavs
-  },
-  {
-    name: 'Териберка',
-    link: teriberka
-  },
-  {
-    name: 'Плато Бермамыт',
-    link: bermamyt
-  },
-  {
-    name: 'Камчатка',
-    link: kamchatka
-  },
-  {
-    name: 'Усьвинские столбы',
-    link: usva
-  },
-  {
-    name: 'Псков',
-    link: pskov
-  },
-];
