@@ -57,7 +57,29 @@ const userData = api.getUserInfo();
 
 /* создание копии класса карточки места */
 function createCard(data) {
-  const card = new Card({ data, userData, api, handleCardClick, handleCardDelete }, templateSelector);
+  const card = new Card({ data,
+    userData,
+    handleCardClick,
+    handleCardDelete,
+    // переключение лайка карточки
+    toggleLike: (evt, cardBlank, id) => {
+      if (cardBlank.querySelector('.place__button-like_active')) {
+        api.removeLike(id)
+        .then(data => {
+          evt.target.classList.remove('place__button-like_active'),
+          card.counterLikes(data.likes)
+        })
+        .catch(err => alert(`Не удалось снять лайк. Ошибка: ${err}`));
+      } else {
+        api.setLike(id)
+        .then(data => {
+          evt.target.classList.add('place__button-like_active'),
+          card.counterLikes(data.likes)
+        })
+        .catch(err => alert(`Не удалось поставить лайк. Ошибка: ${err}`));
+      }
+    }
+  }, templateSelector);
   const cardElement = card.createCard();
 
   return cardElement;
@@ -71,14 +93,15 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, submitFormAvatar);
 const popupProfile = new PopupWithForm(popupProfileSelector, submitFormProfile);
 const popupPlace = new PopupWithForm(popupPlaceSelector, submitFormPlace);
 const popupIllustration = new PopupWithImage(popupIllustrationSelector);
-const popupConfirmation = new PopupWithConfirmation(popupConfirmationSelector);
+const popupConfirmation = new PopupWithConfirmation(popupConfirmationSelector, deleteCard);
 
 /* создание копии класса UserInfo */
 const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector }, avatarSelector);
 /* <<<окончание раздела>>> */
 
 /* <<<раздел заполнения страницы информацией>>> */
-api.getPageInfo().then(([ user, cards ]) => {
+api.getPageInfo()
+.then(([ user, cards ]) => {
   userInfo.setUserInfo(user);
   cardsList.renderItems(cards);
 })
@@ -90,7 +113,8 @@ api.getPageInfo().then(([ user, cards ]) => {
 function submitFormAvatar(info) {
   formAvatar.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  api.setUserAvatar(info).then(data => {
+  api.setUserAvatar(info)
+  .then(data => {
     userInfo.setUserInfo(data);
     popupAvatar.close();
   })
@@ -111,7 +135,8 @@ formAvatarValidator.enableValidation();
 function submitFormProfile(info) {
   formProfile.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  api.setUserInfo(info).then(data => {
+  api.setUserInfo(info)
+  .then(data => {
     userInfo.setUserInfo(data);
     popupProfile.close();
   })
@@ -132,7 +157,8 @@ formProfileValidator.enableValidation();
 function submitFormPlace(cardData) {
   formPlace.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  api.addCard(cardData).then(data => {
+  api.addCard(cardData)
+  .then(data => {
     cardsList.addItem(createCard(data));
     popupPlace.close();
   })
@@ -149,8 +175,19 @@ formPlaceValidator.enableValidation();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел подтверждения удаления карточки>>> */
+// удаление карточки
+function deleteCard(element, id) {
+  api.deleteCard(id)
+  .then(() => {
+    element.remove();
+    popupConfirmation.close();
+  })
+  .catch(err => alert(`Упс. Что-то пошло не так. Ошибка: ${err}`));
+}
+
+// форма подтверждения удаления карточки
 function handleCardDelete(element, id) {
-  popupConfirmation.open(element, id, api);
+  popupConfirmation.open(element, id);
 }
 
 popupConfirmation.setEventListeners();
