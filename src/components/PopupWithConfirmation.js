@@ -8,7 +8,7 @@ export class PopupWithConfirmation extends Popup {
   }
 
   /* открытие формы подтверждения */
-  open(element, api, id) {
+  open(element, id, api) {
     this._element = element;
     this._api = api;
     this._id = id;
@@ -19,10 +19,11 @@ export class PopupWithConfirmation extends Popup {
   /* удаление карточки */
   _deleteCard() {
     this._api.deleteCard(this._id)
-    .then(this._element.remove())
+    .then(() => {
+      this._element.remove();
+      super.close();
+    })
     .catch(err => alert(`Упс. Что-то пошло не так. Ошибка: ${err}`));
-
-    super.close();
   }
 
   /* отслеживание клика подтверждения удаления карточки */

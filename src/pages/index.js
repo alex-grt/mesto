@@ -45,11 +45,15 @@ import {
 /* <<<раздел объявления общих функций и классов>>> */
 /* создание копии класса веб-запросов */
 const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-29/',
   headers: {
     "authorization": "b02f2cf1-1397-498b-b986-5d871e627d26",
     "content-type": "application/json"
   }
 });
+
+/* получение данных профиля */
+const userData = api.getUserInfo();
 
 /* создание копии класса карточки места */
 function createCard(data) {
@@ -58,6 +62,9 @@ function createCard(data) {
 
   return cardElement;
 }
+
+/* создание копии класса Section */
+const cardsList = new Section((item) => cardsList.addItem(createCard(item)), placesGrid);
 
 /* создание копий класса Popup */
 const popupAvatar = new PopupWithForm(popupAvatarSelector, submitFormAvatar);
@@ -70,45 +77,25 @@ const popupConfirmation = new PopupWithConfirmation(popupConfirmationSelector);
 const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector }, avatarSelector);
 /* <<<окончание раздела>>> */
 
-/* <<<раздел Profile>>> */
-// получение данных профиля
-const userData = api.getUserInfo();
-
-// заполнение профиля информацией
-userData.then(data => {
-  userInfo.setUserInfo(data);
-  userInfo.setUserAvatar(data);
+/* <<<раздел заполнения страницы информацией>>> */
+api.getPageInfo().then(([ user, cards ]) => {
+  userInfo.setUserInfo(user);
+  cardsList.renderItems(cards);
 })
-.catch(err => alert(`Упс. Не удалось заполнить профиль. Ошибка: ${err}`));
-/* <<<окончание раздела>>> */
-
-/* <<<раздел Places>>> */
-// заполнение страницы карточками мест
-const cards = api.getCards();
-
-cards.then(data => {
-  const cardsList = new Section({
-    items: data,
-    renderer: (item) => {
-      cardsList.addItem(createCard(item));
-    }
-  }, placesGrid);
-
-  cardsList.renderItems();
-})
-.catch(err => alert(`Упс. Не удалось получить карточки мест. Ошибка: ${err}`));
+.catch(err => alert(`Упс. Не удалось получить информацию. Ошибка: ${err}`));
 /* <<<окончание раздела>>> */
 
 /* <<<раздел формы редактирования аватара>>> */
 // отправка данных, введённых в форму редактирования аватара
 function submitFormAvatar(info) {
-  this._form.querySelector('.form__button-submit').textContent = 'Сохранение...';
-  const newAvatar = api.setUserAvatar(info);
+  formAvatar.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  newAvatar.then(data => userInfo.setUserAvatar(data))
+  api.setUserAvatar(info).then(data => {
+    userInfo.setUserInfo(data);
+    popupAvatar.close();
+  })
   .catch(err => alert(`Упс. Что-то пошло не так. Ошибка: ${err}`))
-  .finally(this._form.querySelector('.form__button-submit').textContent = 'Сохранить');
-  popupAvatar.close();
+  .finally(() => formAvatar.querySelector('.form__button-submit').textContent = 'Сохранить');
 }
 
 popupAvatar.setEventListeners();
@@ -122,13 +109,14 @@ formAvatarValidator.enableValidation();
 /* <<<раздел формы редактирования профиля>>> */
 // отправка данных, введённых в форму редактирования профиля
 function submitFormProfile(info) {
-  this._form.querySelector('.form__button-submit').textContent = 'Сохранение...';
-  const newInfo = api.setUserInfo(info);
+  formProfile.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  newInfo.then(data => userInfo.setUserInfo(data))
+  api.setUserInfo(info).then(data => {
+    userInfo.setUserInfo(data);
+    popupProfile.close();
+  })
   .catch(err => alert(`Упс. Что-то пошло не так. Ошибка: ${err}`))
-  .finally(this._form.querySelector('.form__button-submit').textContent = 'Сохранить');
-  popupProfile.close();
+  .finally(() => formProfile.querySelector('.form__button-submit').textContent = 'Сохранить');
 }
 
 popupProfile.setEventListeners();
@@ -141,16 +129,15 @@ formProfileValidator.enableValidation();
 
 /* <<<раздел формы добавления карточки места>>> */
 // отправка данных, введённых в форму добавления карточки места
-const cardsList = new Section({}, placesGrid);
-
 function submitFormPlace(cardData) {
-  this._form.querySelector('.form__button-submit').textContent = 'Сохранение...';
-  const card = api.addCard(cardData);
+  formPlace.querySelector('.form__button-submit').textContent = 'Сохранение...';
 
-  card.then(data => cardsList.addItem(createCard(data)))
+  api.addCard(cardData).then(data => {
+    cardsList.addItem(createCard(data));
+    popupPlace.close();
+  })
   .catch(err => alert(`Упс. Что-то пошло не так. Ошибка: ${err}`))
-  .finally(this._form.querySelector('.form__button-submit').textContent = 'Создать');
-  popupPlace.close();
+  .finally(() => formPlace.querySelector('.form__button-submit').textContent = 'Создать');
 }
 
 popupPlace.setEventListeners();
@@ -162,8 +149,8 @@ formPlaceValidator.enableValidation();
 /* <<<окончание раздела>>> */
 
 /* <<<раздел подтверждения удаления карточки>>> */
-function handleCardDelete(element, api, id) {
-  popupConfirmation.open(element, api, id);
+function handleCardDelete(element, id) {
+  popupConfirmation.open(element, id, api);
 }
 
 popupConfirmation.setEventListeners();
@@ -187,7 +174,10 @@ buttonAvatar.addEventListener('click', () => {
 
 // редактирования профиля
 buttonEdit.addEventListener('click', () => {
-  userInfo.getUserInfo(inputNameProfile, inputAboutProfile);
+  const info = userInfo.getUserInfo();
+  inputNameProfile.value = info.name;
+  inputAboutProfile.value = info.about;
+
   formProfileValidator.resetValidation();
   popupProfile.open();
 });

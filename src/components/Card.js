@@ -70,7 +70,7 @@ export class Card {
   /* добавление обработчиков */
   _setEventListeners() {
     this._card.querySelector('.place__button-delete')
-    .addEventListener('click', () => this._handleCardDelete(this._card, this._api, this._id));
+    .addEventListener('click', () => this._handleCardDelete(this._card, this._id));
     this._buttonLike.addEventListener('click', (evt) => this._toggleLike(evt));
     this._image.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }

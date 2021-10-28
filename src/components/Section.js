@@ -1,14 +1,13 @@
 /* класс заполнения страницы элементами */
 export class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this._items = items;
+  constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
 
   /* заполнение страницы элементами */
-  renderItems() {
-    this._items.forEach((item) => {
+  renderItems(data) {
+    data.reverse().forEach((item) => {
       this._renderer(item);
     });
   }
