@@ -7,7 +7,12 @@ export class Section {
 
   /* заполнение страницы элементами */
   renderItems(data) {
-    data.reverse().forEach((item) => {
+    data.sort((a, b) => {
+      if (a.createdAt > b.createdAt) return 1;
+      if (a.createdAt == b.createdAt) return 0;
+      if (a.createdAt < b.createdAt) return -1;
+    })
+    .forEach((item) => {
       this._renderer(item);
     });
   }
